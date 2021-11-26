@@ -16,4 +16,6 @@ const getEthHashRate = async (req, res) => {
   });
 };
 
+
+
 module.exports = { getEthHashRate };

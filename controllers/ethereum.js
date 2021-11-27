@@ -4,13 +4,15 @@ const web3 = new Web3(
     "https://mainnet.infura.io/v3/7306b04a3c8e49fa8099b5da68b633be"
   )
 );
+const CoinGecko = require("coingecko-api");
+const CoinGeckoClient = new CoinGecko();
 
 let data = {};
 
 const getEthHashRate = async () => {
   await web3.eth.getHashrate((error, result) => {
     if (!error) {
-      data.hash = result;
+      data.hashrate = result;
     } else {
       console.log(error);
     }
@@ -22,7 +24,7 @@ const getEthHashRate = async () => {
 const getEthGasPrice = async () => {
   await web3.eth.getGasPrice((error, result) => {
     if (!error) {
-      data.gas = web3.utils.fromWei(result, "ether");
+      data.gasprice = web3.utils.fromWei(result, "ether");
     } else {
       console.log(error);
     }
@@ -31,12 +33,32 @@ const getEthGasPrice = async () => {
   // res.status(200).json("working!!");
 };
 
+const getMarketSize = async () => {
+  // let price = await CoinGeckoClient.coins.fetchMarketChart('ethereum',{
+  //   days: 1,
+  //   interval: 'daily'
+  // });
+
+  // console.log(price.market_caps)
+  let market = await CoinGeckoClient.exchanges.fetchTickers("bitfinex", {
+    coin_ids: ["ethereum"],
+  });
+  var _coinList = {};
+  var _datacc = market.data.tickers.filter((t) => t.target == "USD");
+  ["ETH"].forEach((i) => {
+    var _temp = _datacc.filter((t) => t.base == i);
+    var _res = _temp.length == 0 ? [] : _temp[0];
+    _coinList[i] = _res.last;
+  });
+  data.price = _coinList.ETH;
+};
+
 const getEthereumData = async (req, res) => {
   try {
     await getEthHashRate();
     await getEthGasPrice();
-    console.log(data);
-    res.status(200).json("working!!");
+    await getMarketSize();
+    res.status(200).json({ msg: data });
   } catch (error) {
     console.log(error);
   }

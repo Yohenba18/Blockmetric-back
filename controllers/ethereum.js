@@ -7,10 +7,10 @@ const web3 = new Web3(
 
 let data = {};
 
-const getEthHashRate =async () => {
+const getEthHashRate = async () => {
   await web3.eth.getHashrate((error, result) => {
     if (!error) {
-      data.hash = result
+      data.hash = result;
     } else {
       console.log(error);
     }
@@ -22,7 +22,7 @@ const getEthHashRate =async () => {
 const getEthGasPrice = async () => {
   await web3.eth.getGasPrice((error, result) => {
     if (!error) {
-      data.gas = result
+      data.gas = web3.utils.fromWei(result, "ether");
     } else {
       console.log(error);
     }
@@ -31,7 +31,7 @@ const getEthGasPrice = async () => {
   // res.status(200).json("working!!");
 };
 
-const getEthereumData =async (req, res) => {
+const getEthereumData = async (req, res) => {
   try {
     await getEthHashRate();
     await getEthGasPrice();

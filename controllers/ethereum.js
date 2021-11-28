@@ -53,6 +53,10 @@ const getMarketSize = async () => {
   data.price = _coinList.ETH;
 };
 
+const getUserData = async () => {
+
+}
+
 const getEthereumData = async (req, res) => {
   try {
     await getEthHashRate();

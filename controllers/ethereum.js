@@ -24,7 +24,7 @@ const getEthHashRate = async () => {
 const getEthGasPrice = async () => {
   await web3.eth.getGasPrice((error, result) => {
     if (!error) {
-      data.gasprice = web3.utils.fromWei(result, "ether");
+      data.gasprice = web3.utils.fromWei(result, "Gwei");
     } else {
       console.log(error);
     }
@@ -34,35 +34,34 @@ const getEthGasPrice = async () => {
 };
 
 const getMarketSize = async () => {
-  // let price = await CoinGeckoClient.coins.fetchMarketChart('ethereum',{
-  //   days: 1,
-  //   interval: 'daily'
-  // });
+  let price = await CoinGeckoClient.coins.fetchMarketChart("ethereum", {
+    days: 1,
+    interval: "daily",
+  });
 
-  // console.log(price.market_caps)
-  let market = await CoinGeckoClient.exchanges.fetchTickers("bitfinex", {
-    coin_ids: ["ethereum"],
-  });
-  var _coinList = {};
-  var _datacc = market.data.tickers.filter((t) => t.target == "USD");
-  ["ETH"].forEach((i) => {
-    var _temp = _datacc.filter((t) => t.base == i);
-    var _res = _temp.length == 0 ? [] : _temp[0];
-    _coinList[i] = _res.last;
-  });
-  data.price = _coinList.ETH;
+  data.price = Math.floor(price.data.market_caps[0][1] / 1000000000);
 };
 
-const getUserData = async () => {
+const getDeveloperData = async () => {
+  let user = await CoinGeckoClient.coins.fetch("ethereum", {
+    tickers: false,
+    market_data: false,
+    community_data: false,
+    developer_data: true,
+    localization: false,
+    sparkline: false,
+  });
 
-}
+  data.developers = user.data.developer_data.pull_request_contributors;
+};
 
 const getEthereumData = async (req, res) => {
   try {
     await getEthHashRate();
     await getEthGasPrice();
     await getMarketSize();
-    res.status(200).json({ msg: data });
+    await getDeveloperData();
+    res.status(200).json(data);
   } catch (error) {
     console.log(error);
   }

@@ -5,10 +5,10 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 
 app.get("/", (req, res) => {
-  res.send('<a href="/api/v1/ethereum">Ethereum route</a>');
+  res.send('<a href="/api/v1/Ethereum">Ethereum route</a><a href="/api/v1/Solana">Solana route</a>');
 });
 
-app.use("/api/v1/ethereum", ethereumRouter);
+app.use("/api/v1/", ethereumRouter);
 
 //errors
 app.use(notFoundMiddleware);

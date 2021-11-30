@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
-const ethereumRouter = require("./routes/ethereum");
+const mainRouter = require("./routes/main");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 
 app.get("/", (req, res) => {
-  res.send('<a href="/api/v1/Ethereum">Ethereum route</a><a href="/api/v1/Solana">Solana route</a>');
+  res.send(
+    '<a href="/api/v1/Ethereum">Ethereum route</a><br/><a href="/api/v1/Solana">Solana route</a>'
+  );
 });
 
-app.use("/api/v1/", ethereumRouter);
+app.use("/api/v1/", mainRouter);
 
 //errors
 app.use(notFoundMiddleware);

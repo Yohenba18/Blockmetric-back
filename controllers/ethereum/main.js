@@ -1,9 +1,5 @@
 var Web3 = require("web3");
-const web3 = new Web3(
-  new Web3.providers.HttpProvider(
-    "https://mainnet.infura.io/v3/7306b04a3c8e49fa8099b5da68b633be"
-  )
-);
+const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_ID));
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 
@@ -19,7 +15,6 @@ const getEthereumData = async (newdata) => {
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);
     await getDeveloperData(CoinGeckoClient, data);
-
 
     newdata.push(data);
     return newdata;

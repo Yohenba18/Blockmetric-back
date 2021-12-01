@@ -6,30 +6,34 @@ const connection = new web3.Connection(
 );
 // mainnet-beta
 
-const getSolanaData = async (req, res) => {
+const CoinGecko = require("coingecko-api");
+const CoinGeckoClient = new CoinGecko();
+
+const { getEthHashRate } = require("./factors/hashrate");
+const { getEthGasPrice } = require("./factors/gasprice");
+const { getDeveloperData } = require("./factors/users");
+
+const data = {};
+
+const getSolanaData = async (newdata) => {
   try {
-    // var wallet = web3.Keypair.generate();
-    // var airdropSignature = await connection.requestAirdrop(
-    //   wallet.publicKey,
-    //   web3.LAMPORTS_PER_SOL
-    // );
-    // console.log(wallet);
-    // await connection.confirmTransaction(airdropSignature);
-    // let account = await connection.getAccountInfo(wallet.publicKey);
-    // console.log(account);
+    data.name = "Solana";
+
     let slot = await connection.getSlot();
+    data.slot = slot;
     console.log(slot);
     // 93186439
-
-    let blockTime = await connection.getBlockTime(slot);
-    console.log(blockTime);
-    // // 1630747045
-    console.log(tx.serializeMessage().toString("base64"));
-
     // let block = await connection.getBlock(slot);
     // console.log(block);
+    let blockTime = await connection.getBlockTime(slot);
+    console.log(blockTime);
+    data.blockTime = blockTime;
+    // // 1630747045
 
-    res.status(200).json("working!!!");
+    await getDeveloperData(CoinGeckoClient, data);
+
+    newdata.push(data);
+    return newdata;
   } catch (error) {
     console.log(error);
   }

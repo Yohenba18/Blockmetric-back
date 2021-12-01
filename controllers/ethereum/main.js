@@ -9,18 +9,20 @@ const CoinGeckoClient = new CoinGecko();
 
 const { getEthHashRate } = require("./factors/hashrate");
 const { getEthGasPrice } = require("./factors/gasprice");
-const { getMarketSize } = require("./factors/marketcap");
 const { getDeveloperData } = require("./factors/users");
 
 const data = {};
 
-const getEthereumData = async (req, res) => {
+const getEthereumData = async (newdata) => {
   try {
+    data.name = "Ethereum";
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);
-    await getMarketSize(CoinGeckoClient, data);
     await getDeveloperData(CoinGeckoClient, data);
-    res.status(200).json(data);
+
+
+    newdata.push(data);
+    return newdata;
   } catch (error) {
     console.log(error);
   }

@@ -7,8 +7,6 @@ const getEthHashRate = async (web3, data) => {
   const blocktime = (hash1.timestamp - hash2.timestamp) / sampleSize;
   const difficulty = hash1.difficulty;
   data.hash = Math.floor((difficulty / blocktime)/10**12);
-
-
   return data;
 };
 

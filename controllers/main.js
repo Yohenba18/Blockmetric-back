@@ -1,8 +1,8 @@
-const data = [];
-
 const { getEthereumData } = require("./ethereum/main");
 const { getSolanaData } = require("./solana/main");
 const { getAllMarketSize } = require("./market/market");
+
+const data = [];
 
 const getAllData = async (req, res) => {
   try {
@@ -10,8 +10,10 @@ const getAllData = async (req, res) => {
     await getSolanaData(data);
 
     const marketdata = await getAllMarketSize();
+    let j = 0
     for (i in data) {
-      data[i].id = i;
+      data[i].id = j;
+      j++;
     }
     for(i in marketdata){
       if(marketdata[i].id === 'ethereum'){

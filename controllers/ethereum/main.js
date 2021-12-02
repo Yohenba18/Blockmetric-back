@@ -13,6 +13,7 @@ const data = {};
 const getEthereumData = async (newdata) => {
   try {
     data.name = "Ethereum";
+    data.protocol = "POW";
     // await getEthTransactionspeed(web3, data);
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);

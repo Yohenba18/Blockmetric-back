@@ -18,7 +18,7 @@ const getSolanaData = async (newdata) => {
   try {
     data.name = "Solana";
     data.gasprice = "0.00001";
-
+    data.protocol = "POS";
     await getSolTransactionspeed(connection, data);
     await getDeveloperData(CoinGeckoClient, data);
 

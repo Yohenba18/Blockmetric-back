@@ -11,9 +11,10 @@ const getSolTransactionspeed = (connection, data) => {
       speeds.push(Number(count));
 
       timesRun += 1;
-      if(timesRun === 15) {
+      if (timesRun === 15) {
         clearInterval(interval);
-        data.transaction = await findavg();
+        data.transaction = findavg();
+        console.log(data.transaction);
         return data;
       }
     }, 1000);
@@ -27,7 +28,8 @@ const findavg = () => {
   for (i = 0; i < speeds.length; i++) {
     speeds[i] = speeds[i + 1] - speeds[i];
   }
-  return speeds.reduce((a, b) => a + b) / speeds.length;
+  speeds.pop();
+  return Math.floor(speeds.reduce((a, b) => a + b) / speeds.length);
 };
 
 module.exports = { getSolTransactionspeed };

@@ -13,16 +13,17 @@ const data = {};
 const getEthereumData = async (newdata) => {
   try {
     data.name = "Ethereum";
-    await getEthTransactionspeed(web3, data);
+    // await getEthTransactionspeed(web3, data);
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);
     await getDeveloperData(CoinGeckoClient, data);
 
-    newdata.push(data);
-    return newdata;
+    await newdata.push(data);
+    
   } catch (error) {
     console.log(error);
   }
+  return newdata;
 };
 
 module.exports = { getEthereumData };

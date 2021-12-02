@@ -22,11 +22,12 @@ const getSolanaData = async (newdata) => {
     await getSolTransactionspeed(connection, data);
     await getDeveloperData(CoinGeckoClient, data);
 
-    newdata.push(data);
-    return newdata;
+    await newdata.push(data);
+    
   } catch (error) {
     console.log(error);
   }
+  return newdata;
 };
 
 module.exports = { getSolanaData };

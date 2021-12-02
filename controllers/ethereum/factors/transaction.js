@@ -12,7 +12,8 @@ const getEthTransactionspeed = (web3, data) => {
       timesRun += 1;
       if(timesRun === 30) {
         clearInterval(interval);
-        data.transaction = await findavg();
+        // data.transaction = await findavg();
+        console.log(findavg())
         return data;
       }
     }, 1000);
@@ -26,7 +27,8 @@ const findavg = () => {
   for (i = 0; i < speeds.length; i++) {
     speeds[i] = speeds[i + 1] - speeds[i];
   }
-  return speeds.reduce((a, b) => a + b) / speeds.length;
+  speeds.pop()
+  return (speeds.reduce((a, b) => a + b) / speeds.length);
 };
 
 module.exports = { getEthTransactionspeed };

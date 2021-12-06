@@ -2,6 +2,7 @@ const { getEthereumData } = require("./ethereum/main");
 const { getSolanaData } = require("./solana/main");
 const { getAllMarketSize } = require("./market/market");
 const { getTezosData } = require("./tezos/main");
+const { getAlgorandData } = require("./algorand/main");
 
 const data = [];
 
@@ -10,6 +11,7 @@ const getAllData = async (req, res) => {
     await getEthereumData(data);
     await getSolanaData(data);
     await getTezosData(data);
+    await getAlgorandData(data);
 
     const marketdata = await getAllMarketSize();
     let j = 0;
@@ -24,6 +26,11 @@ const getAllData = async (req, res) => {
         } else if (marketdata[i].id === "solana" && data[j].name === "Solana") {
           data[j].price = marketdata[i].market_cap;
         } else if (marketdata[i].id === "tezos" && data[j].name === "Tezos") {
+          data[j].price = marketdata[i].market_cap;
+        } else if (
+          marketdata[i].id === "algorand" &&
+          data[j].name === "Algorand"
+        ) {
           data[j].price = marketdata[i].market_cap;
         }
       }

@@ -11,6 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@solana/web3.js": "^1.31.0",
+    "@taquito/rpc": "^11.0.2",
+    "@taquito/taquito": "^11.0.2",
+    "axios": "^0.24.0",
+    "bitcoinjs-lib": "^6.0.1",
     "coingecko-api": "^1.0.10",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

@@ -4,6 +4,8 @@ const mainRouter = require("./routes/main");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send(
     '<a href="/api/v1/">All data route</a><br/><a href="/api/v1/Solana">Solana route</a>'

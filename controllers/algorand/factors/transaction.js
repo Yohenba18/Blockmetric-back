@@ -4,20 +4,20 @@ const getAlgoTransactionspeed = async (algosdk, data) => {
   try {
     let timesRun = 0;
     const ABIMethod = await algosdk.ABIMethod();
-    // let interval = setInterval(async () => {
+    let interval = setInterval(async () => {
     
     const count = await ABIMethod.txnCount();
     // speeds.push(Number(count));
 
     console.log(count);
-    // timesRun += 1;
-    // if (timesRun === 10) {
-    //   clearInterval(interval);
+    timesRun += 1;
+    if (timesRun === 10) {
+      clearInterval(interval);
     // data.transaction = findavg();
     // console.log(data.transaction);
     return data;
-    //  }
-    //   }, 1000);
+     }
+      }, 1000);
   } catch (error) {
     console.log(error);
   }

@@ -1,8 +1,10 @@
 const speeds = [];
 
-const getSolTransactionspeed =async (connection, data) => {
+const getSolTransactionspeed = async (connection, data) => {
   try {
-    await findSpeed(connection).then((transaction) => (data.transaction = transaction));
+    await findSpeed(connection).then(
+      (transaction) => (data.transaction = transaction)
+    );
     return data;
   } catch (error) {
     console.log(error);

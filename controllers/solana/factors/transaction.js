@@ -1,7 +1,16 @@
 const speeds = [];
 
-const getSolTransactionspeed = (connection, data) => {
+const getSolTransactionspeed =async (connection, data) => {
   try {
+    await findSpeed(connection).then((transaction) => (data.transaction = transaction));
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const findSpeed = (connection) => {
+  return new Promise((resolve, reject) => {
     let timesRun = 0;
     let interval = setInterval(async () => {
       const count = await connection
@@ -9,19 +18,15 @@ const getSolTransactionspeed = (connection, data) => {
         .then((res) => JSON.stringify(res))
         .catch((error) => console.log(error));
       speeds.push(Number(count));
-
       timesRun += 1;
-      if (timesRun === 15) {
+      if (timesRun === 20) {
         clearInterval(interval);
-        data.transaction = findavg();
-        console.log(data.transaction);
-        return data;
+        transaction = findavg();
+        console.log(transaction);
+        resolve(transaction);
       }
     }, 1000);
-  } catch (error) {
-    console.log(error);
-  }
-  
+  });
 };
 
 const findavg = () => {

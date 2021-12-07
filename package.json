@@ -8,7 +8,7 @@
     "start": "nodemon app.js"
   },
   "author": "Yohenba Kshetrimayum",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@solana/web3.js": "^1.31.0",
     "@taquito/rpc": "^11.0.2",

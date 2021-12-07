@@ -21,9 +21,7 @@ const getSolanaData = async (newdata) => {
     data.protocol = "POH";
     await getSolTransactionspeed(connection, data);
     await getDeveloperData(CoinGeckoClient, data);
-
-    await newdata.push(data);
-    
+    newdata.push(data);
   } catch (error) {
     console.log(error);
   }

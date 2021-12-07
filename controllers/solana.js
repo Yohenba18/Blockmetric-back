@@ -15,7 +15,6 @@ const getSolana = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
   res.status(200).json(data[0]);
 };
 

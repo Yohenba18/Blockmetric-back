@@ -1,4 +1,7 @@
+require("dotenv").config();
+
 var Web3 = require("web3");
+
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_ID));
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
@@ -14,13 +17,12 @@ const getEthereumData = async (newdata) => {
   try {
     data.name = "Ethereum";
     data.protocol = "POW";
-    // await getEthTransactionspeed(web3, data);
+    await getEthTransactionspeed(web3, data);
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);
     await getDeveloperData(CoinGeckoClient, data);
 
     await newdata.push(data);
-    
   } catch (error) {
     console.log(error);
   }

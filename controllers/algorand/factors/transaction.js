@@ -1,29 +1,35 @@
 const speeds = [];
 
-const getAlgoTransactionspeed = async (algosdk, data) => {
+const getAlgoTransactionspeed = async (algodABI, data) => {
   try {
-    let timesRun = 0;
-    const ABIMethod = await algosdk.ABIMethod();
-    let interval = setInterval(async () => {
-    
-    const count = await ABIMethod.txnCount();
-    // speeds.push(Number(count));
-
-    console.log(count);
-    timesRun += 1;
-    if (timesRun === 10) {
-      clearInterval(interval);
-    // data.transaction = findavg();
-    // console.log(data.transaction);
+    await findSpeed(algodABI).then(
+      (transaction) => (data.transaction = transaction)
+    );
     return data;
-     }
-      }, 1000);
   } catch (error) {
     console.log(error);
   }
 };
 
+const findSpeed = (algodABI) => {
+  return new Promise((resolve, reject) => {
+    let timesRun = 0;
+    let interval = setInterval(async () => {
+      const count = await algodABI.txncount();
+      console.log(count);
+      speeds.push(Number(count));
+      timesRun += 1;
+      if (timesRun === 20) {
+        clearInterval(interval);
+        transaction = findavg();
+        resolve(transaction);
+      }
+    }, 1000);
+  });
+};
+
 const findavg = () => {
+  speeds.reverse();
   for (i = 0; i < speeds.length; i++) {
     speeds[i] = speeds[i + 1] - speeds[i];
   }

@@ -2,33 +2,49 @@
 
 const speeds = [];
 
-const getEthTransactionspeed = (web3, data) => {
+const getEthTransactionspeed = async (web3, data) => {
   try {
-    let timesRun = 0;
-    let interval = setInterval(async () => {
-      const count = await web3.eth.getTransactionCount
-      speeds.push(count);
+    const currentNumber = await web3.eth.getBlockNumber();
+    const { blocktime, avgtransactionsize, avgblocksize } = await getBlockdata(
+      web3,
+      currentNumber
+    );
+    const transactionperblock = avgblocksize / avgtransactionsize;
+    const throughput = transactionperblock / blocktime;
+    console.log(Math.round(throughput / 2));
 
-      timesRun += 1;
-      if(timesRun === 30) {
-        clearInterval(interval);
-        // data.transaction = await findavg();
-        console.log(findavg())
-        return data;
-      }
-    }, 1000);
+    return (data.transaction = parseFloat(throughput / 2).toFixed(2));
   } catch (error) {
     console.log(error);
   }
-  
 };
 
-const findavg = () => {
-  for (i = 0; i < speeds.length; i++) {
-    speeds[i] = speeds[i + 1] - speeds[i];
+const getBlockdata = async (web3, currentNumber) => {
+  const span = 50;
+  const times = [];
+  const transactioncounts = [];
+  const blocksize = [];
+  const firstBlock = await web3.eth.getBlock(currentNumber - span);
+  let prevTimestamp = firstBlock.timestamp;
+
+  for (let i = currentNumber - span + 1; i <= currentNumber; i++) {
+    const block = await web3.eth.getBlock(i);
+    blocksize.push(block.size);
+    transactioncounts.push(block.transactions.length);
+
+    let time = block.timestamp - prevTimestamp;
+    prevTimestamp = block.timestamp;
+    times.push(time);
   }
-  speeds.pop()
-  return (speeds.reduce((a, b) => a + b) / speeds.length);
+  const avgblocksize = Math.round(
+    blocksize.reduce((a, b) => a + b) / blocksize.length
+  );
+  const avgtransactionsize = Math.round(
+    transactioncounts.reduce((a, b) => a + b) / transactioncounts.length
+  );
+  const blocktime = Math.round(times.reduce((a, b) => a + b) / times.length);
+  console.log(blocktime, avgtransactionsize, avgblocksize);
+  return { blocktime, avgtransactionsize, avgblocksize };
 };
 
 module.exports = { getEthTransactionspeed };

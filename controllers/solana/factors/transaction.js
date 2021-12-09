@@ -24,7 +24,6 @@ const findSpeed = (connection) => {
       if (timesRun === 20) {
         clearInterval(interval);
         transaction = findavg();
-        console.log(transaction);
         resolve(transaction);
       }
     }, 1000);

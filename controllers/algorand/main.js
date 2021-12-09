@@ -1,5 +1,7 @@
-const algosdk = require("algosdk");
 const { ALGORAND_MIN_TX_FEE } = require("algosdk");
+const algosdk = require("algosdk");
+
+// const algodABI = new algosdk.ABIMethod()
 
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
@@ -14,7 +16,7 @@ const getAlgorandData = async (newdata) => {
     data.name = "Algorand";
     data.protocol = "POS";
     data.gasprice = ALGORAND_MIN_TX_FEE + " microAlgos";
-    await getAlgoTransactionspeed(algosdk, data);
+    // await getAlgoTransactionspeed(algodABI, data);
 
     await getDeveloperData(CoinGeckoClient, data);
 

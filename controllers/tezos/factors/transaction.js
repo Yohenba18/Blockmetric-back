@@ -1,41 +1,48 @@
-const axios = require("axios");
-// const { RpcClient } = require("@taquito/rpc");
-// const client = new RpcClient('https://mainnet.smartpy.io');
-// client.getRpcUrl()
-// .then((res) => JSON.stringify(res))
-// .catch((error) => console.log(error));
+// const axios = require("axios");
+const { RpcClient } = require("@taquito/rpc");
+const client = new RpcClient("https://mainnet.smartpy.io");
+
 const speeds = [];
 
 const getTezTransactionspeed = async (data) => {
   try {
-    let timesRun = 0;
-    let interval = setInterval(async () => {
-    const count = await axios.get(
-      "https://api.tzkt.io/v1/operations/transactions/count"
-    );
-    // speeds.push(Number(count));
+    const block1 = await client.getBlock()
+    const block2 = await client.getBlock()
+    console.log(block1);
+    console.log(block2);
 
-    console.log(count.data);
-    timesRun += 1;
-    if (timesRun === 10) {
-      clearInterval(interval);
- // data.transaction = findavg();
- // console.log(data.transaction);
-        return data;
-     }
-      }, 1000);
+    return data;
   } catch (error) {
     console.log(error);
   }
-  
 };
 
-const findavg = () => {
-  for (i = 0; i < speeds.length; i++) {
-    speeds[i] = speeds[i + 1] - speeds[i];
+const getBlockdata = async (currentNumber) => {
+  const span = 50;
+  const times = [];
+  const transactioncounts = [];
+  const blocksize = [];
+  const firstBlock = await web3.eth.getBlock(currentNumber - span);
+  let prevTimestamp = firstBlock.timestamp;
+
+  for (let i = currentNumber - span + 1; i <= currentNumber; i++) {
+    const block = await web3.eth.getBlock(i);
+    blocksize.push(block.size);
+    transactioncounts.push(block.transactions.length);
+
+    let time = block.timestamp - prevTimestamp;
+    prevTimestamp = block.timestamp;
+    times.push(time);
   }
-  speeds.pop();
-  return Math.floor(speeds.reduce((a, b) => a + b) / speeds.length);
+  const avgblocksize = Math.round(
+    blocksize.reduce((a, b) => a + b) / blocksize.length
+  );
+  const avgtransactionsize = Math.round(
+    transactioncounts.reduce((a, b) => a + b) / transactioncounts.length
+  );
+  const blocktime = Math.round(times.reduce((a, b) => a + b) / times.length);
+  console.log(blocktime, avgtransactionsize, avgblocksize);
+  return { blocktime, avgtransactionsize, avgblocksize };
 };
 
 module.exports = { getTezTransactionspeed };

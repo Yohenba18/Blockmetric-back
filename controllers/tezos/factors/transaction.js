@@ -8,8 +8,8 @@ const getTezTransactionspeed = async (data) => {
   try {
     const block1 = await client.getBlock()
     const block2 = await client.getBlock()
-    console.log(block1);
-    console.log(block2);
+    // console.log(block1);
+    // console.log(block2);
 
     return data;
   } catch (error) {

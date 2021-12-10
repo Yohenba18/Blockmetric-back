@@ -1,3 +1,5 @@
+// change it it's still tezos
+
 const axios = require("axios");
 
 const speeds = [];

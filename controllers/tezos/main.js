@@ -19,7 +19,7 @@ const getTezosData = async (newdata) => {
     data.name = "Tezos";
     data.protocol = "POS";
     data.gasprice = DEFAULT_FEE["REVEAL"] + " TEZ"
-    await getTezTransactionspeed(data);
+    // await getTezTransactionspeed(data);
     // await getTezGasPrice(tezos, data)
     await getDeveloperData(CoinGeckoClient, data);
 

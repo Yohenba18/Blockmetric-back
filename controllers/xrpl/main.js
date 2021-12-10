@@ -1,7 +1,7 @@
 const xrpl = require("xrpl")
 const PUBLIC_SERVER = "wss://xrplcluster.com/"
 const client = new xrpl.Client(PUBLIC_SERVER)
-await client.connect()
+// await client.connect()
 // mainnet-beta
 
 const CoinGecko = require("coingecko-api");
@@ -17,8 +17,8 @@ const getRippleData = async (newdata) => {
   try {
     data.name = "Ripple";
 
-    data.gasprice = + " XRP"
-    await getXRPTransactionspeed(data);
+    data.gasprice = "0.00001" + " XRP"
+    // await getXRPTransactionspeed(data);
     // await getXRPGasPrice(Ripple, data)
     await getDeveloperData(CoinGeckoClient, data);
 

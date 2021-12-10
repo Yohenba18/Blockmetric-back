@@ -3,6 +3,7 @@ const { getSolanaData } = require("./solana/main");
 const { getAllMarketSize } = require("./market/market");
 const { getTezosData } = require("./tezos/main");
 const { getAlgorandData } = require("./algorand/main");
+const { getRippleData } = require("./xrpl/main");
 
 const data = [];
 
@@ -12,6 +13,7 @@ const getAllData = async (req, res) => {
     await getSolanaData(data);
     await getTezosData(data);
     await getAlgorandData(data);
+    await getRippleData(data);
 
     const marketdata = await getAllMarketSize();
     let j = 0;
@@ -31,6 +33,8 @@ const getAllData = async (req, res) => {
           marketdata[i].id === "algorand" &&
           data[j].name === "Algorand"
         ) {
+          data[j].price = marketdata[i].market_cap;
+        } else if (marketdata[i].id === "ripple" && data[j].name === "Ripple") {
           data[j].price = marketdata[i].market_cap;
         }
       }

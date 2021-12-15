@@ -1,5 +1,5 @@
-const { getAlgorandData } = require("./algorand/main");
-const { getAllMarketSize } = require("./market/market");
+const { getAlgorandData } = require("../chains/algorand/main");
+const { getAllMarketSize } = require("../market/market");
 
 const data = [];
 

@@ -1,9 +1,9 @@
-const { getEthereumData } = require("./ethereum/main");
-const { getSolanaData } = require("./solana/main");
+const { getEthereumData } = require("./chains/ethereum/main");
+const { getSolanaData } = require("./chains/solana/main");
 const { getAllMarketSize } = require("./market/market");
-const { getTezosData } = require("./tezos/main");
-const { getAlgorandData } = require("./algorand/main");
-const { getRippleData } = require("./xrpl/main");
+const { getTezosData } = require("./chains/tezos/main");
+const { getAlgorandData } = require("./chains/algorand/main");
+const { getRippleData } = require("./chains/xrpl/main");
 
 const data = [];
 

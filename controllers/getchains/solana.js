@@ -1,5 +1,5 @@
-const { getSolanaData } = require("./solana/main");
-const { getAllMarketSize } = require("./market/market");
+const { getSolanaData } = require("../chains/solana/main");
+const { getAllMarketSize } = require("../market/market");
 
 const data = [];
 

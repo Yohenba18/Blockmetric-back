@@ -1,5 +1,5 @@
-const { getEthereumData } = require("./ethereum/main");
-const { getAllMarketSize } = require("./market/market");
+const { getEthereumData } = require("../chains/ethereum/main");
+const { getAllMarketSize } = require("../market/market");
 
 const data = [];
 

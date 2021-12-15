@@ -1,11 +1,11 @@
-const { getRippleData } = require("./xrpl/main");
-const { getAllMarketSize } = require("./market/market");
+const { getTezosData } = require("../chains/tezos/main");
+const { getAllMarketSize } = require("../market/market");
 
 const data = [];
 
-const getRipple = async (req, res) => {
+const getTezos = async (req, res) => {
   try {
-    await getRippleData(data);
+    await getTezosData(data);
     const marketdata = await getAllMarketSize();
     for (i in marketdata) {
       if (marketdata[i].id === "tezos") {
@@ -19,4 +19,4 @@ const getRipple = async (req, res) => {
   res.status(200).json(data[0]);
 };
 
-module.exports = { getRipple };
+module.exports = { getTezos };

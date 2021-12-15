@@ -39,10 +39,14 @@ const getAllData = async (req, res) => {
         }
       }
     }
+    j = 0;
   } catch (error) {
     console.log(error);
   }
-  res.status(200).json(data);
+  console.log(data);
+  res
+    .status(200)
+    .json(data)
 };
 
 module.exports = { getAllData };

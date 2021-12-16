@@ -1,4 +1,4 @@
-const getDeveloperData = async (CoinGeckoClient, data) => {
+const getDeveloperData = async (CoinGeckoClient, data, name) => {
   let user = await CoinGeckoClient.coins.fetch("algorand", {
     tickers: false,
     market_data: false,
@@ -8,6 +8,9 @@ const getDeveloperData = async (CoinGeckoClient, data) => {
     sparkline: false,
   });
   data.developers = user.data.developer_data.pull_request_contributors;
+  if (name) {
+    data.name = name;
+  }
   return data;
 };
 

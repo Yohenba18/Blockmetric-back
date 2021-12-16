@@ -7,9 +7,13 @@ const getDeveloperData = async (CoinGeckoClient, data, name) => {
     localization: false,
     sparkline: false,
   });
-  data.developers = user.data.developer_data.pull_request_contributors;
   if (name) {
-    data.name = name;
+    const newdata = {};
+    newdata.name = name;
+    newdata.developers = user.data.developer_data.pull_request_contributors;
+    data.push(newdata);
+  } else {
+    data.developers = user.data.developer_data.pull_request_contributors;
   }
   return data;
 };

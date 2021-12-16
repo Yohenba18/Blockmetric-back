@@ -1,10 +1,12 @@
-# Blockmetric backend made in express.
+# Blockmetric backend made in express, nodejs.
 
 ### Instructions to run the server
 
 ```
-  1. npm i 
-  2. npm start
+  1. npm i
+  2. Connect mongodb 
+  3. npm start
+
 ```
 
 ### Contributors:-

@@ -21,25 +21,13 @@ const data = [];
 
 const getAllDevelopers = async (req, res) => {
   try {
-    const newdata = {};
-    await algodevdata(CoinGeckoClient, newdata, "Algorand").then(() => {
-      data.push(newdata);
-    });
-    await ethdevdata(CoinGeckoClient, newdata, "Ethereum").then(() => {
-      data.push(newdata);
-    });
+    await algodevdata(CoinGeckoClient, data, "Algorand");
+    await ethdevdata(CoinGeckoClient, data, "Ethereum");
+    await tezdevdata(CoinGeckoClient, data, "Tezos");
 
-    await tezdevdata(CoinGeckoClient, newdata, "Tezos").then(() => {
-      data.push(newdata);
-    });
+    await soldevdata(CoinGeckoClient, data, "Solana");
 
-    await soldevdata(CoinGeckoClient, newdata, "Solana").then(() => {
-      data.push(newdata);
-    });
-
-    await xrpldevdata(CoinGeckoClient, newdata, "Solana").then(() => {
-      data.push(newdata);
-    });
+    await xrpldevdata(CoinGeckoClient, data, "Ripple");
   } catch (error) {
     console.error(error);
   }
@@ -48,3 +36,16 @@ const getAllDevelopers = async (req, res) => {
 };
 
 module.exports = { getAllDevelopers };
+
+// .then(() => {
+//   data.push(newdata);
+// });
+
+// if (name) {
+//   const newdata = {};
+//   newdata.name = name;
+//   newdata.developers = user.data.developer_data.pull_request_contributors;
+//   data.push(newdata);
+// } else {
+//   data.developers = user.data.developer_data.pull_request_contributors;
+// }

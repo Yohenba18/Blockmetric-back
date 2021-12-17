@@ -24,9 +24,7 @@ const getAllDevelopers = async (req, res) => {
     await algodevdata(CoinGeckoClient, data, "Algorand");
     await ethdevdata(CoinGeckoClient, data, "Ethereum");
     await tezdevdata(CoinGeckoClient, data, "Tezos");
-
     await soldevdata(CoinGeckoClient, data, "Solana");
-
     await xrpldevdata(CoinGeckoClient, data, "Ripple");
   } catch (error) {
     console.error(error);
@@ -36,10 +34,6 @@ const getAllDevelopers = async (req, res) => {
 };
 
 module.exports = { getAllDevelopers };
-
-// .then(() => {
-//   data.push(newdata);
-// });
 
 // if (name) {
 //   const newdata = {};

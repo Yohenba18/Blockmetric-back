@@ -2,7 +2,7 @@
 
 const speeds = [];
 
-const getEthTransactionspeed = async (web3, data) => {
+const getEthTransactionspeed = async (web3, data, name) => {
   try {
     const currentNumber = await web3.eth.getBlockNumber();
     const { blocktime, avgtransactionsize, avgblocksize } = await getBlockdata(
@@ -13,7 +13,15 @@ const getEthTransactionspeed = async (web3, data) => {
     const throughput = transactionperblock / blocktime;
     console.log(Math.round(throughput / 2));
 
-    return (data.transaction = parseFloat(throughput / 2).toFixed(2));
+    if (name) {
+      const newdata = {};
+      newdata.name = name;
+      newdata.transaction = parseFloat(throughput / 2).toFixed(2);
+      data.push(newdata)
+    } else {
+      data.transaction = parseFloat(throughput / 2).toFixed(2);
+    }
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -21,9 +29,9 @@ const getEthTransactionspeed = async (web3, data) => {
 
 const getBlockdata = async (web3, currentNumber) => {
   const span = 50;
-  const times = [];
-  const transactioncounts = [];
-  const blocksize = [];
+  const times = [],
+    transactioncounts = [],
+    blocksize = [];
   const firstBlock = await web3.eth.getBlock(currentNumber - span);
   let prevTimestamp = firstBlock.timestamp;
 

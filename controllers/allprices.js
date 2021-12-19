@@ -8,13 +8,17 @@ const getAllPrice = async (req, res) => {
     for (i in marketdata) {
       const newdata = {};
       newdata.name = marketdata[i].id;
-      newdata.price = marketdata[i].market_cap;
+      newdata.value = marketdata[i].market_cap;
       data.push(newdata);
     }
   } catch (error) {
     console.error(error);
   }
-  res.status(200).json(data);
+  res.status(200).json({
+    title: "Market Size",
+    column: "Market size (B)",
+    data: data,
+  });
 };
 
 module.exports = { getAllPrice };

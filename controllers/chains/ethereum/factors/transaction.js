@@ -16,7 +16,7 @@ const getEthTransactionspeed = async (web3, data, name) => {
     if (name) {
       const newdata = {};
       newdata.name = name;
-      newdata.transaction = parseFloat(throughput / 2).toFixed(2);
+      newdata.value = parseFloat(throughput / 2).toFixed(2);
       data.push(newdata)
     } else {
       data.transaction = parseFloat(throughput / 2).toFixed(2);

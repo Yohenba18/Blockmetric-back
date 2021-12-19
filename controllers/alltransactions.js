@@ -24,8 +24,11 @@ const getAllTransactions = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-  console.log(data);
-  res.status(200).json(data);
+  res.status(200).json({
+    title: "Transaction speed",
+    column: "Transaction(/sec)",
+    data: data,
+  });
 };
 
 module.exports = { getAllTransactions };

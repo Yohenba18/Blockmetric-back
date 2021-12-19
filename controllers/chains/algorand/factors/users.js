@@ -10,7 +10,7 @@ const getDeveloperData = async (CoinGeckoClient, data, name) => {
   if (name) {
     const newdata = {};
     newdata.name = name;
-    newdata.developers = user.data.developer_data.pull_request_contributors;
+    newdata.value = user.data.developer_data.pull_request_contributors;
     data.push(newdata);
   } else {
     data.developers = user.data.developer_data.pull_request_contributors;

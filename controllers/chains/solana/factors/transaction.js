@@ -6,7 +6,7 @@ const getSolTransactionspeed = async (connection, data, name) => {
       if (name) {
         const newdata = {};
         newdata.name = name;
-        newdata.transaction = transaction;
+        newdata.value = transaction;
         data.push(newdata);
       } else {
         data.transaction = transaction;

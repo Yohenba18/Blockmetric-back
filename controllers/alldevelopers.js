@@ -29,8 +29,11 @@ const getAllDevelopers = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-  console.log(data);
-  res.status(200).json(data);
+  res.status(200).json({
+    title: "Developers",
+    column: "Developers",
+    data: data,
+  });
 };
 
 module.exports = { getAllDevelopers };

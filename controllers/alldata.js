@@ -7,7 +7,7 @@ const { getRippleData } = require("./chains/xrpl/main");
 
 const data = [];
 
-const getAllData = async (req, res) => {
+const getAllData = async () => {
   try {
     await getEthereumData(data);
     await getSolanaData(data);
@@ -44,9 +44,10 @@ const getAllData = async (req, res) => {
     console.log(error);
   }
   console.log(data);
-  res
-    .status(200)
-    .json(data)
+  // res
+  //   .status(200)
+  //   .json(data)
+  return data;
 };
 
 module.exports = { getAllData };

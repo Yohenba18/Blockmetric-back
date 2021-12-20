@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AddDataSchema = mongoose.Schema({
+const AllDataSchema = mongoose.Schema({
   id: {
     type: Number,
   },
@@ -26,4 +26,4 @@ const AddDataSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("AllData", AddDataSchema);
+module.exports = mongoose.model("AllData", AllDataSchema);

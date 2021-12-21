@@ -17,18 +17,26 @@ const connection = new solanaweb3.Connection(
 
 const data = [];
 
-const getAllTransactions = async (req, res) => {
+const getAllTransactions = async () => {
   try {
     await getEthTransactionspeed(web3, data, "Ethereum");
     await getSolTransactionspeed(connection, data, "Solana");
   } catch (error) {
     console.error(error);
   }
-  res.status(200).json({
+  // res.status(200).json({
+  //   title: "Transaction speed",
+  //   column: "Transaction(/sec)",
+  //   data: data,
+  // });
+
+  const reqData = {
     title: "Transaction speed",
     column: "Transaction(/sec)",
     data: data,
-  });
+  };
+
+  return reqData;
 };
 
 module.exports = { getAllTransactions };

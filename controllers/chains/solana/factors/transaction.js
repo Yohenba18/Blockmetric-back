@@ -6,10 +6,10 @@ const getSolTransactionspeed = async (connection, data, name) => {
       if (name) {
         const newdata = {};
         newdata.name = name;
-        newdata.value = transaction;
+        newdata.value = Number(Math.round(transaction / 1000));
         data.push(newdata);
       } else {
-        data.transaction = transaction;
+        data.transaction = Number(transaction);
       }
     });
     return data;

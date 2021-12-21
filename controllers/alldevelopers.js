@@ -19,7 +19,7 @@ const CoinGeckoClient = new CoinGecko();
 
 const data = [];
 
-const getAllDevelopers = async (req, res) => {
+const getAllDevelopers = async () => {
   try {
     await algodevdata(CoinGeckoClient, data, "Algorand");
     await ethdevdata(CoinGeckoClient, data, "Ethereum");
@@ -29,11 +29,18 @@ const getAllDevelopers = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-  res.status(200).json({
+
+  const reqData = {
     title: "Developers",
     column: "Developers",
-    data: data,
-  });
+    data: data
+  }
+  // res.status(200).json({
+  //   title: "Developers",
+  //   column: "Developers",
+  //   data: data,
+  // });
+  return reqData
 };
 
 module.exports = { getAllDevelopers };

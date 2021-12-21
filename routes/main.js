@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllData } = require("../controllers/alldata");
 const { getAlgorand } = require("../controllers/getchains/algorand");
 const { getEthereum } = require("../controllers/getchains/ethereum");
 const { getSolana } = require("../controllers/getchains/solana");
 const { getRipple } = require("../controllers/getchains/xrpl");
 const { getTezos } = require("../controllers/getchains/tezos");
+
+const { getAllData } = require("../controllers/alldata");
 const { getAllTransactions } = require("../controllers/alltransactions");
 const { getAllDevelopers } = require("../controllers/alldevelopers");
 const { getAllPrice } = require("../controllers/allprices");

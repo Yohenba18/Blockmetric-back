@@ -5,9 +5,8 @@ const { getTezosData } = require("./chains/tezos/main");
 const { getAlgorandData } = require("./chains/algorand/main");
 const { getRippleData } = require("./chains/xrpl/main");
 
-const data = [];
-
 const getAllData = async () => {
+  const data = [];
   try {
     await getEthereumData(data);
     await getSolanaData(data);

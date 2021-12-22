@@ -1,8 +1,9 @@
 const { getAllMarketSize } = require("./market/market");
 
-const data = [];
+
 
 const getAllPrice = async () => {
+  const data = [];
   try {
     const marketdata = await getAllMarketSize();
     for (i in marketdata) {

@@ -14,7 +14,6 @@ const DbAllData = async (req, res) => {
 const DbAllDeveloperslData = async (req, res) => {
   try {
     const alldevelopers = await AllDevelopers.findOne({});
-    console.log(alldevelopers);
     res.status(200).json(alldevelopers);
   } catch (error) {
     console.log(error);

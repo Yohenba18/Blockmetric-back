@@ -17,9 +17,10 @@ const {
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 
-const data = [];
+
 
 const getAllDevelopers = async () => {
+  const data = [];
   try {
     await algodevdata(CoinGeckoClient, data, "Algorand");
     await ethdevdata(CoinGeckoClient, data, "Ethereum");

@@ -15,9 +15,8 @@ const connection = new solanaweb3.Connection(
   "confirmed"
 );
 
-const data = [];
-
 const getAllTransactions = async () => {
+  const data = [];
   try {
     await getEthTransactionspeed(web3, data, "Ethereum");
     await getSolTransactionspeed(connection, data, "Solana");

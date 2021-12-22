@@ -11,9 +11,10 @@ const DbAllData = async (req, res) => {
     console.log(error);
   }
 };
-const DbAlDeveloperslData = async (req, res) => {
+const DbAllDeveloperslData = async (req, res) => {
   try {
-    const alldevelopers = await AllDevelopers.find({});
+    const alldevelopers = await AllDevelopers.findOne({});
+    console.log(alldevelopers);
     res.status(200).json(alldevelopers);
   } catch (error) {
     console.log(error);
@@ -21,7 +22,7 @@ const DbAlDeveloperslData = async (req, res) => {
 };
 const DbAllPricesData = async (req, res) => {
   try {
-    const allprices = await AllPrices.find({});
+    const allprices = await AllPrices.findOne({});
     res.status(200).json(allprices);
   } catch (error) {
     console.log(error);
@@ -29,7 +30,7 @@ const DbAllPricesData = async (req, res) => {
 };
 const DbAllTransactionsData = async (req, res) => {
   try {
-    const alltransactions = await AllTransactions.find({});
+    const alltransactions = await AllTransactions.findOne({});
     res.status(200).json(alltransactions);
   } catch (error) {
     console.log(error);
@@ -39,6 +40,6 @@ const DbAllTransactionsData = async (req, res) => {
 module.exports = {
   DbAllData,
   DbAllPricesData,
-  DbAlDeveloperslData,
+  DbAllDeveloperslData,
   DbAllTransactionsData,
 };

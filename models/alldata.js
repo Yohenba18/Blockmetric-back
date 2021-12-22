@@ -19,6 +19,9 @@ const AllDataSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    gasprice:{
+      type: String,
+    },
     developers: {
       type: Number,
     },

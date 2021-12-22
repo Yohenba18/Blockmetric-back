@@ -29,6 +29,7 @@ const AddAllData = async () => {
 
 const AddDevelopersData = async () => {
   const data = await getAllDevelopers();
+  console.log(data)
   await AllDevelopers.deleteMany();
   await AllDevelopers.create(data);
 };

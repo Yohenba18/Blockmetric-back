@@ -15,7 +15,7 @@ const { getTezos } = require("../controllers/getchains/tezos");
 const {
   DbAllData,
   DbAllPricesData,
-  DbAlDeveloperslData,
+  DbAllDeveloperslData,
   DbAllTransactionsData,
 } = require("../controllers/DbData");
 
@@ -34,7 +34,7 @@ router.route("/Ripple").get(getRipple);
 //routes to get specific data of all chains
 //* routes changed to DbData.js
 router.route("/Transaction").get(DbAllTransactionsData);
-router.route("/Developers").get(DbAlDeveloperslData);
+router.route("/Developers").get(DbAllDeveloperslData);
 router.route("/Price").get(DbAllPricesData);
 
 module.exports = router;

@@ -12,9 +12,16 @@ const { getAllTransactions } = require("../controllers/alltransactions");
 const { getAllDevelopers } = require("../controllers/alldevelopers");
 const { getAllPrice } = require("../controllers/allprices");
 
+const {
+  DbAllData,
+  DbAllPricesData,
+  DbAlDeveloperslData,
+  DbAllTransactionsData,
+} = require("../controllers/DbData");
+
 //route to get the entire data
 //* need to change this
-router.route("/").get(getAllData);
+router.route("/").get(DbAllData);
 
 //seperate routes for each chain
 // not req to change this function this will work even when the routes are changed to database
@@ -26,8 +33,8 @@ router.route("/Ripple").get(getRipple);
 
 //routes to get specific data of all chains
 //* need to change this
-router.route("/Transaction").get(getAllTransactions);
-router.route("/Developers").get(getAllDevelopers);
-router.route("/Price").get(getAllPrice);
+router.route("/Transaction").get(DbAllTransactionsData);
+router.route("/Developers").get(DbAlDeveloperslData);
+router.route("/Price").get(DbAllPricesData);
 
 module.exports = router;

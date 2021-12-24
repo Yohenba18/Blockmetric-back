@@ -29,6 +29,8 @@ const getAllTransactions = async () => {
   //   data: data,
   // });
 
+  data.sort((a, b) => b.value - a.value);
+
   const reqData = {
     title: "Transaction speed",
     column: "Transaction(/sec)",

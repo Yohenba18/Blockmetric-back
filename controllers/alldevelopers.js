@@ -17,8 +17,6 @@ const {
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 
-
-
 const getAllDevelopers = async () => {
   const data = [];
   try {
@@ -31,17 +29,19 @@ const getAllDevelopers = async () => {
     console.error(error);
   }
 
+  data.sort((a, b) => b.value - a.value);
+
   const reqData = {
     title: "Developers",
     column: "Developers",
-    data: data
-  }
+    data: data,
+  };
   // res.status(200).json({
   //   title: "Developers",
   //   column: "Developers",
   //   data: data,
   // });
-  return reqData
+  return reqData;
 };
 
 module.exports = { getAllDevelopers };

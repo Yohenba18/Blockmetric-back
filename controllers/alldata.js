@@ -42,7 +42,6 @@ const getAllData = async () => {
   } catch (error) {
     console.log(error);
   }
-  console.log(data);
   // res
   //   .status(200)
   //   .json(data)

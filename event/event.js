@@ -8,8 +8,8 @@ const AllDevelopers = require("../models/alldevelopers");
 const AllPrices = require("../models/allprices");
 const AllTransactions = require("../models/alltransactions");
 
-schedule.scheduleJob("*/5 * * * *", async () => {
-  console.log("here!!")
+schedule.scheduleJob("0 */2 * * *", async () => {
+  console.log("here!!");
   try {
     await AddAllData();
     await AddTransactionsData();

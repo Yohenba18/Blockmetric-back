@@ -8,7 +8,7 @@ const AllDevelopers = require("../models/alldevelopers");
 const AllPrices = require("../models/allprices");
 const AllTransactions = require("../models/alltransactions");
 
-schedule.scheduleJob("0 */2 * * *", async () => {
+schedule.scheduleJob("*/2 * * * *", async () => {
   console.log("here!!");
   try {
     await AddAllData();

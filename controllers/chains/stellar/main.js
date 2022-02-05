@@ -9,7 +9,7 @@ const CoinGeckoClient = new CoinGecko();
 
 const { getDeveloperData } = require("./factors/users");
 const { getXRPTransactionspeed } = require("./factors/transaction");
-const { getXRPGasPrice } = require("./factors/gasprice");
+// const {  getXRPGasPrice } = require("./factors/gasprice");
 
 const data = {};
 
@@ -17,8 +17,9 @@ const getRippleData = async (newdata) => {
   try {
     data.name = "Ripple";
 
+    data.gasprice = "0.00001" + " XRP"
     // await getXRPTransactionspeed(data);
-    await getXRPGasPrice(data)
+    // await getXRPGasPrice(Ripple, data)
     await getDeveloperData(CoinGeckoClient, data);
 
     await newdata.push(data);

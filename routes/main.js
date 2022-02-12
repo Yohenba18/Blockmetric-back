@@ -24,7 +24,7 @@ const {
 router.route("/").get(DbAllData);
 
 //seperate routes for each chain
-// not req to change this function this will work even when the routes are changed to database
+//* not req to change this function this will work even when the routes are changed to database
 router.route("/Ethereum").get(getEthereum);
 router.route("/Algorand").get(getAlgorand);
 router.route("/Solana").get(getSolana);

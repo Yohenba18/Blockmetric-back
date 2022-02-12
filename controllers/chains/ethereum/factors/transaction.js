@@ -11,7 +11,7 @@ const getEthTransactionspeed = async (web3, data, name) => {
     );
     const transactionperblock = avgblocksize / avgtransactionsize;
     const throughput = transactionperblock / blocktime;
-    console.log(Math.round(throughput / 2));
+    // console.log(Math.round(throughput / 2));
 
     if (name) {
       const newdata = {};
@@ -28,7 +28,7 @@ const getEthTransactionspeed = async (web3, data, name) => {
 };
 
 const getBlockdata = async (web3, currentNumber) => {
-  const span = 50;
+  const span = 100;
   const times = [],
     transactioncounts = [],
     blocksize = [];
@@ -51,7 +51,7 @@ const getBlockdata = async (web3, currentNumber) => {
     transactioncounts.reduce((a, b) => a + b) / transactioncounts.length
   );
   const blocktime = Math.round(times.reduce((a, b) => a + b) / times.length);
-  console.log(blocktime, avgtransactionsize, avgblocksize);
+  // console.log(blocktime, avgtransactionsize, avgblocksize);
   return { blocktime, avgtransactionsize, avgblocksize };
 };
 

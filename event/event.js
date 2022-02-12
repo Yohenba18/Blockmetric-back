@@ -9,7 +9,6 @@ const AllPrices = require("../models/allprices");
 const AllTransactions = require("../models/alltransactions");
 
 schedule.scheduleJob("*/30 * * * *", async () => {
-  console.log("here!!");
   try {
     await AddAllData();
     await AddTransactionsData();
@@ -24,7 +23,6 @@ const AddAllData = async () => {
   const data = await getAllData();
   await AllData.deleteMany();
   await AllData.create(data);
-  console.log(data);
 };
 
 const AddDevelopersData = async () => {

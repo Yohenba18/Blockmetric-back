@@ -11,16 +11,17 @@ const CoinGeckoClient = new CoinGecko();
 
 const { getDeveloperData } = require("./factors/users");
 const { getSolTransactionspeed } = require("./factors/transaction");
+const { getSolGasPrice } = require("./factors/gasprice");
 
 const data = {};
 
 const getSolanaData = async (newdata) => {
   try {
     data.name = "Solana";
-    data.gasprice = "0.00001 SOL";
     data.protocol = "POH";
     await getSolTransactionspeed(connection, data);
     await getDeveloperData(CoinGeckoClient, data);
+    await getSolGasPrice(connection, data);
     newdata.push(data);
   } catch (error) {
     console.log(error);

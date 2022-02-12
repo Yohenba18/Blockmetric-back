@@ -27,10 +27,10 @@ const findSpeed = (connection) => {
         .catch((error) => console.log(error));
       speeds.push(Number(count));
       timesRun += 1;
-      if (timesRun === 50) {
+      if (timesRun === 60) {
         clearInterval(interval);
         transaction = findavg(speeds);
-        console.log("Solana transaction: " + transaction);
+        // console.log("Solana transaction: " + transaction);
         resolve(transaction);
       }
     }, 1000);

@@ -36,7 +36,7 @@ Please add, if possible, a reviewer, assignees and labels to your issue and PR.
 Branch names must follow `kebab-case` pattern. Follow the pattern `feature/<name>`or `fix/<name> (folder/<name>)` when it is possible and add issue reference if applicable.
 
 ## Rules
-### Do's 
+### Do's
 1. **DO** include tests when adding new features.
 2. **DO** follow the current project structure. For improvements do start a issue and discuss it with the developers in the community
 

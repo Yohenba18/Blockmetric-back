@@ -5,7 +5,9 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 const connectDB = require("./db/connect");
 const job = require("./event/event");
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json());
 
 app.get("/", (req, res) => {

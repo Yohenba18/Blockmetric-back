@@ -1,5 +1,5 @@
 const getDeveloperData = async (CoinGeckoClient, data, name) => {
-  let user = await CoinGeckoClient.coins.fetch("ripple", {
+  let user = await CoinGeckoClient.coins.fetch("stellar", {
     tickers: false,
     market_data: false,
     community_data: false,

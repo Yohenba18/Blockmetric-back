@@ -6,11 +6,7 @@ const { getEthereum } = require("../controllers/getchains/ethereum");
 const { getSolana } = require("../controllers/getchains/solana");
 const { getRipple } = require("../controllers/getchains/xrpl");
 const { getTezos } = require("../controllers/getchains/tezos");
-
-// const { getAllData } = require("../controllers/alldata");
-// const { getAllTransactions } = require("../controllers/alltransactions");
-// const { getAllDevelopers } = require("../controllers/alldevelopers");
-// const { getAllPrice } = require("../controllers/allprices");
+const { getStellar } = require("../controllers/getchains/stellar");
 
 const {
   DbAllData,
@@ -30,6 +26,7 @@ router.route("/Algorand").get(getAlgorand);
 router.route("/Solana").get(getSolana);
 router.route("/Tezos").get(getTezos);
 router.route("/Ripple").get(getRipple);
+router.route("/Stellar").get(getStellar);
 
 //routes to get specific data of all chains
 //* routes changed to DbData.js

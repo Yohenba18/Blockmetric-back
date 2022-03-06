@@ -19,7 +19,7 @@ const AllDataSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
-    gasprice:{
+    gasprice: {
       type: String,
     },
     developers: {

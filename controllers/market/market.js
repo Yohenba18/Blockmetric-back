@@ -6,7 +6,7 @@ const getAllMarketSize = async () => {
     order: "market_cap_desc",
     per_page: 100,
     page: 1,
-    ids: ["ethereum", "solana", "tezos", "algorand", "ripple"],
+    ids: ["ethereum", "solana", "tezos", "algorand", "ripple", "stellar"],
   });
   for (i in data.data) {
     data.data[i].market_cap = Math.floor(data.data[i].market_cap / 1000000000);

@@ -1,5 +1,5 @@
 const getDeveloperData = async (CoinGeckoClient, data) => {
-  let user = await CoinGeckoClient.coins.fetch("ethereum", {
+  let user = await CoinGeckoClient.coins.fetch("bitcoin", {
     tickers: false,
     market_data: false,
     community_data: false,

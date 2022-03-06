@@ -13,6 +13,9 @@ const {
 const {
   getDeveloperData: xrpldevdata,
 } = require("./chains/xrpl/factors/users");
+const {
+  getDeveloperData: xlmdevdata,
+} = require("./chains/stellar/factors/users");
 
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
@@ -25,6 +28,7 @@ const getAllDevelopers = async () => {
     await tezdevdata(CoinGeckoClient, data, "Tezos");
     await soldevdata(CoinGeckoClient, data, "Solana");
     await xrpldevdata(CoinGeckoClient, data, "Ripple");
+    await xlmdevdata(CoinGeckoClient, data, "Stellar");
   } catch (error) {
     console.error(error);
   }
@@ -36,11 +40,7 @@ const getAllDevelopers = async () => {
     column: "Developers",
     data: data,
   };
-  // res.status(200).json({
-  //   title: "Developers",
-  //   column: "Developers",
-  //   data: data,
-  // });
+
   return reqData;
 };
 

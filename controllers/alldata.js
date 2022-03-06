@@ -4,6 +4,7 @@ const { getAllMarketSize } = require("./market/market");
 const { getTezosData } = require("./chains/tezos/main");
 const { getAlgorandData } = require("./chains/algorand/main");
 const { getRippleData } = require("./chains/xrpl/main");
+const { getStellarData } = require("./chains/stellar/main");
 
 const getAllData = async () => {
   const data = [];
@@ -13,6 +14,7 @@ const getAllData = async () => {
     await getTezosData(data);
     await getAlgorandData(data);
     await getRippleData(data);
+    await getStellarData(data);
 
     const marketdata = await getAllMarketSize();
     let j = 0;
@@ -34,6 +36,11 @@ const getAllData = async () => {
         ) {
           data[j].price = marketdata[i].market_cap;
         } else if (marketdata[i].id === "ripple" && data[j].name === "Ripple") {
+          data[j].price = marketdata[i].market_cap;
+        } else if (
+          marketdata[i].id === "stellar" &&
+          data[j].name === "Stellar"
+        ) {
           data[j].price = marketdata[i].market_cap;
         }
       }

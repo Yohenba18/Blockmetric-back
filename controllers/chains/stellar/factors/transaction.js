@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const speeds = [];
 
-const getXRPTransactionspeed = async (data) => {
+const getXLMTransactionspeed = async (data) => {
   try {
     let timesRun = 0;
     let interval = setInterval(async () => {
@@ -36,4 +36,4 @@ const findavg = () => {
   return Math.floor(speeds.reduce((a, b) => a + b) / speeds.length);
 };
 
-module.exports = { getXRPTransactionspeed };
+module.exports = { getXLMTransactionspeed };

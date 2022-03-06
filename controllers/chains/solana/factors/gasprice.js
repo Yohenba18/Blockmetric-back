@@ -1,3 +1,5 @@
+const { getCurrentPrices } = require("../../../market/currentprices");
+
 const getSolGasPrice = async (connection, newdata) => {
   try {
     let slot = await connection.getSlot();
@@ -9,9 +11,13 @@ const getSolGasPrice = async (connection, newdata) => {
     });
     transactionCount += block.transactions.length;
 
-    const gasprice = Math.round(total / transactionCount) * 0.000000001;
-    newdata.gasprice = await gasprice.toExponential(2) + " SOL";
+    const curentPriceData = await getCurrentPrices();
+
+    const gasprice = (Math.round(total / transactionCount) * 0.000000001) * curentPriceData.data.solana.usd;
+    newdata.gasprice = gasprice.toFixed(5)
     return newdata;
+
+    // = await gasprice.toExponential(2);
   } catch (error) {
     console.log(error);
   }
@@ -19,16 +25,3 @@ const getSolGasPrice = async (connection, newdata) => {
 
 module.exports = { getSolGasPrice };
 
-//   const blocks = await connection.getBlocks(slot - 5, slot);
-//   for (i in blocks) {
-//   let block = await connection.getBlock(Number(i));
-//   block.transactions.map((transaction) => {
-//     total += transaction.meta.fee;
-//   });
-//   transactionCount += block.transactions.length;
-// }
-//   console.log(total);
-//   console.log(transactionCount);
-
-//   const gasprice = Math.round(total / transactionCount) * 0.000000001;
-//   console.log(gasprice);

@@ -1,12 +1,15 @@
 const { default: axios } = require("axios");
+const { getCurrentPrices } = require("../../../market/currentprices");
 
 const getXRPGasPrice = async (newdata) => {
   try {
     const fetchdata = await fetchRippleData();
 
-    const avgfees = await calculateAvgFees(fetchdata);
+    var avgfees = await calculateAvgFees(fetchdata);
 
-    newdata.gasprice = avgfees + " Drops";
+    const curentPriceData = await getCurrentPrices();
+    avgfees = (avgfees * 0.0000924) * curentPriceData.data.ripple.usd
+    newdata.gasprice = avgfees.toFixed(5);
 
     return newdata;
   } catch (error) {

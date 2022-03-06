@@ -1,27 +1,19 @@
-const xrpl = require("xrpl")
-const PUBLIC_SERVER = "wss://xrplcluster.com/"
-const client = new xrpl.Client(PUBLIC_SERVER)
-// await client.connect()
-// mainnet-beta
+var StellarSdk = require("stellar-sdk");
+var server = new StellarSdk.Server("https://horizon.stellar.org");
 
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 
 const { getDeveloperData } = require("./factors/users");
-const { getXRPTransactionspeed } = require("./factors/transaction");
-// const {  getXRPGasPrice } = require("./factors/gasprice");
+const { getXLMTransactionspeed } = require("./factors/transaction");
+const { getXLMGasPrice } = require("./factors/gasprice");
 
 const data = {};
-
-const getRippleData = async (newdata) => {
+const getStellarData = async (newdata) => {
   try {
-    data.name = "Ripple";
-
-    data.gasprice = "0.00001" + " XRP"
-    // await getXRPTransactionspeed(data);
-    // await getXRPGasPrice(Ripple, data)
+    data.name = "Stellar";
+    await getXLMGasPrice(data);
     await getDeveloperData(CoinGeckoClient, data);
-
     await newdata.push(data);
   } catch (error) {
     console.log(error);
@@ -29,4 +21,4 @@ const getRippleData = async (newdata) => {
   return newdata;
 };
 
-module.exports = { getRippleData };
+module.exports = { getStellarData };

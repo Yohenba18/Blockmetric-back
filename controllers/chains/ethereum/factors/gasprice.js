@@ -1,3 +1,5 @@
+const {getCurrentPrices} = require("../../../market/currentprices")
+
 const getEthGasPrice = async (web3, newdata) => {
   var gasprice;
   await web3.eth.getGasPrice((error, result) => {
@@ -6,6 +8,7 @@ const getEthGasPrice = async (web3, newdata) => {
     } else {
       console.log(error);
     }
+    
     newdata.gasprice = Number(gasprice).toExponential(2) + " ETH";
   });
 };

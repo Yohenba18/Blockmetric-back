@@ -15,9 +15,18 @@ const {
   DbAllTransactionsData,
 } = require("../controllers/DbData");
 
+
+const { getDevelopersAllData } = require("../controllers/YForDevs/DevelopersAllData");
+
 //route to get the entire data
 //* route changed to DbData.js
 router.route("/").get(DbAllData);
+
+//routes to get specific data of all chains
+//* routes changed to DbData.js
+router.route("/Transaction").get(DbAllTransactionsData);
+router.route("/Developers").get(DbAllDeveloperslData);
+router.route("/Price").get(DbAllPricesData);
 
 //seperate routes for each chain
 //* not req to change this function this will work even when the routes are changed to database
@@ -28,10 +37,10 @@ router.route("/Tezos").get(getTezos);
 router.route("/Ripple").get(getRipple);
 router.route("/Stellar").get(getStellar);
 
-//routes to get specific data of all chains
-//* routes changed to DbData.js
-router.route("/Transaction").get(DbAllTransactionsData);
-router.route("/Developers").get(DbAllDeveloperslData);
-router.route("/Price").get(DbAllPricesData);
+//seperate routes for developers for checking valid data
+//* not req to change this function this will work even when the routes are changed to database
+router.route("/FindoutAllData").get(getDevelopersAllData);
+
+
 
 module.exports = router;

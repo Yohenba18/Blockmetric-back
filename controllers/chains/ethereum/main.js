@@ -21,7 +21,6 @@ const getEthereumData = async (newdata) => {
     await getEthHashRate(web3, data);
     await getEthGasPrice(web3, data);
     await getDeveloperData(CoinGeckoClient, data);
-
     await newdata.push(data);
   } catch (error) {
     console.log(error);

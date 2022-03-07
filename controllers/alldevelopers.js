@@ -45,12 +45,3 @@ const getAllDevelopers = async () => {
 };
 
 module.exports = { getAllDevelopers };
-
-// if (name) {
-//   const newdata = {};
-//   newdata.name = name;
-//   newdata.developers = user.data.developer_data.pull_request_contributors;
-//   data.push(newdata);
-// } else {
-//   data.developers = user.data.developer_data.pull_request_contributors;
-// }

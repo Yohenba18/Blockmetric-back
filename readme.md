@@ -1,4 +1,4 @@
-# Blockmetric backend
+# Blockmetric Server
 
 ### Instructions to run the server
 

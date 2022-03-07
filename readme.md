@@ -1,5 +1,4 @@
-# Blockmetric backend made in express, nodejs.
-
+# Blockmetric backend
 ### Instructions to run the server
 
 ```
@@ -8,6 +7,9 @@
   3. Create a infura account and add your api keys as provided in .env.example
   4. npm start
 ```
+
+## Contrubuting
+Checkout [Contributing.md](https://github.com/Yohenba18/Blockmetric-back/CONTRIBUTING.md) for guildines to contributing.
 
 ### Contributors:-
 

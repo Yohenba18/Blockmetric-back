@@ -11,7 +11,7 @@ const AllTransactions = require("../models/alltransactions");
 // var rule = new schedule.RecurrenceRule()
 // rule.minute = 2
 
-schedule.scheduleJob("*/30 * * * *", async () => {
+schedule.scheduleJob("*/20 * * * *", async () => {
   console.log("here");
   try {
     await AddAllData();

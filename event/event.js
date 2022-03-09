@@ -8,7 +8,11 @@ const AllDevelopers = require("../models/alldevelopers");
 const AllPrices = require("../models/allprices");
 const AllTransactions = require("../models/alltransactions");
 
+// var rule = new schedule.RecurrenceRule()
+// rule.minute = 2
+
 schedule.scheduleJob("*/30 * * * *", async () => {
+  console.log("here");
   try {
     await AddAllData();
     await AddTransactionsData();
@@ -21,6 +25,7 @@ schedule.scheduleJob("*/30 * * * *", async () => {
 
 const AddAllData = async () => {
   const data = await getAllData();
+  console.log(data);
   await AllData.deleteMany();
   await AllData.create(data);
 };

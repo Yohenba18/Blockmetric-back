@@ -1,12 +1,6 @@
-const getEthGasPrice = async (web3,data) => {
-    await web3.eth.getGasPrice((error, result) => {
-      if (!error) {
-        data.gasprice = web3.utils.fromWei(result, "ether");
-        return data
-      } else {
-        console.log(error);
-      }
-    });
-}
+const getBitGasPrice = async (client, data) => {
+  client.getBlockchainInfo().then((help) => console.log(help));
+  return data;
+};
 
-module.exports = {getEthGasPrice}
+module.exports = { getBitGasPrice };

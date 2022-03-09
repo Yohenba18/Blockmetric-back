@@ -6,6 +6,16 @@ const { getBitGasPrice } = require("./factors/gasprice");
 const { getDeveloperData } = require("./factors/users");
 const { getBitTransactionspeed } = require("./factors/transaction");
 
+const Client = require('bitcoin-core');
+const client = new Client({ 
+  network: 'regtest', 
+  username: 'user', 
+  password: 'pass', 
+  port: 18443 
+});
+
+
+
 const data = {};
 
 const getBitcoinData = async (newdata) => {
@@ -13,8 +23,8 @@ const getBitcoinData = async (newdata) => {
     data.name = "Bitcoin";
     data.protocol = "POW";
     // await getBitTransactionspeed(web3, data);
-    await getBitHashRate(web3, data);
-    await getBitGasPrice(web3, data);
+    // await getBitHashRate(web3, data);
+    await getBitGasPrice(client, data);
     await getDeveloperData(CoinGeckoClient, data);
 
     await newdata.push(data);

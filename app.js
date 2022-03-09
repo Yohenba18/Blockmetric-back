@@ -4,9 +4,9 @@ const mainRouter = require("./routes/main");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
 const connectDB = require("./db/connect");
-const cors = require('cors')
+const cors = require("cors");
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -28,7 +28,6 @@ const start = async () => {
     await connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
       console.log(`Server is listening on port ${port}...`);
-      
     });
   } catch (error) {
     console.log(error);

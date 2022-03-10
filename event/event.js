@@ -11,16 +11,19 @@ const AllTransactions = require("../models/alltransactions");
 // var rule = new schedule.RecurrenceRule()
 // rule.minute = 2
 
-schedule.scheduleJob("*/20 * * * *", async () => {
-  try {
-    await AddAllData();
-    await AddTransactionsData();
-    await AddDevelopersData();
-    await AddPricesData();
-  } catch (error) {
-    console.log(error);
-  }
-});
+const eventFunction = () => {
+  // console.log("here");
+  schedule.scheduleJob("*/20 * * * *", async () => {
+    try {
+      await AddAllData();
+      await AddTransactionsData();
+      await AddDevelopersData();
+      await AddPricesData();
+    } catch (error) {
+      console.log("Event file: ", error);
+    }
+  });
+};
 
 const AddAllData = async () => {
   const data = await getAllData();
@@ -43,3 +46,5 @@ const AddTransactionsData = async () => {
   await AllTransactions.deleteMany();
   await AllTransactions.create(data);
 };
+
+module.exports = { eventFunction };

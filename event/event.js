@@ -12,7 +12,6 @@ const AllTransactions = require("../models/alltransactions");
 // rule.minute = 2
 
 const eventFunction = () => {
-  // console.log("here");
   schedule.scheduleJob("*/20 * * * *", async () => {
     try {
       await AddAllData();

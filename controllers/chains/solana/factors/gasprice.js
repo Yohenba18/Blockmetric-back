@@ -13,15 +13,15 @@ const getSolGasPrice = async (connection, newdata) => {
 
     const curentPriceData = await getCurrentPrices();
 
-    const gasprice = (Math.round(total / transactionCount) * 0.000000001) * curentPriceData.data.solana.usd;
-    newdata.gasprice = gasprice.toFixed(5)
+    const gasprice =
+      Math.round(total / transactionCount) *
+      0.000000001 *
+      curentPriceData.data.solana.usd;
+    newdata.gasprice = gasprice.toFixed(5);
     return newdata;
-
-    // = await gasprice.toExponential(2);
   } catch (error) {
     console.log(error);
   }
 };
 
 module.exports = { getSolGasPrice };
-

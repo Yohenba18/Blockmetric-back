@@ -26,6 +26,7 @@ const eventFunction = () => {
 
 const AddAllData = async () => {
   const data = await getAllData();
+  console.log(data)
   await AllData.deleteMany();
   await AllData.create(data);
 };

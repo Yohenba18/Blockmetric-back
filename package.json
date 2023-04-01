@@ -13,6 +13,7 @@
   "author": "Yohenba Kshetrimayum",
   "license": "MIT",
   "dependencies": {
+    "@polkadot/api": "^8.0.2",
     "@solana/web3.js": "^1.31.0",
     "@taquito/rpc": "^11.0.2",
     "@taquito/taquito": "^11.0.2",

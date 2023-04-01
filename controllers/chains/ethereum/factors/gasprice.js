@@ -9,8 +9,9 @@ const getEthGasPrice = async (web3, newdata) => {
     } else {
       console.log(error);
     }
+    console.log(curentPriceData.data);
     gasprice = gasprice * curentPriceData.data.ethereum.usd;
-    newdata.gasprice = gasprice.toFixed(6)
+    newdata.gasprice = gasprice.toFixed(6);
     return newdata;
   });
 };
